@@ -68,26 +68,17 @@ botui.message.add({
     return botui.message.add({
         delay:3000,
         loading: true,
-        content:'The server of the restaurant was temporarily down, and I could not retrieve information from the restaurant. Can you repeat?'
+        content:'I cannot send your request because the server of the food delivery app is down due to a temporary error.'
     });
 }).then(function(){
-    return botui.action.text({
-        action: {
-          placeholder: 'Enter your message.'
-        }
-        });
-}).then(function (res) { 
-    console.log(res.value);
-    response.push(res.value);
-}).then(function(){
     return botui.message.add({
-        delay:3000,
+        delay:2000,
         loading: true,
-        content:'I will process your request. Please hold on for a moment.'
+        content:'Let me try to send your request to the server again. Please hold on for a moment'
     });
 }).then(function(){
     return botui.message.add({
-        delay:3000,
+        delay:10000,
         loading: true,
         content:'I have processed your request. The issue is resolved.'
     });
@@ -101,5 +92,5 @@ botui.message.add({
 });
 
 function sendcomplete(){
-    window.parent.postMessage({"message": "completed","text1":response[0],"text2":response[1],"text3":response[2],"text4":response[3]}, "*");
+    window.parent.postMessage({"message": "completed","text1":response[0],"text2":response[1],"text3":response[2]}, "*");
 };
