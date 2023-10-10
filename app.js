@@ -4,6 +4,7 @@ const response=new Array();
 botui.message.add({
     delay:2000,
     loading: true,
+    photo: true,
     content: 'Hello. This is Alex, and I work at the customer service department.'
 }).then(function(){
     return botui.message.add({
